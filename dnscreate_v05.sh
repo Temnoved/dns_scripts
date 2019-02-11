@@ -51,10 +51,6 @@ ns1 IN  A 192.168.0.53
 _EOF_
 }
 
-#if [[]]; then
-#  
-#fi
-
 #############################################################################
 # A block of changing configurations of iptables.                           #
 # Stop firewalld if it exist and install iptables                           #
