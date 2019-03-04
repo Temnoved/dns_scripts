@@ -2,7 +2,6 @@
 
 if [[ "$#" -eq 0  ]]; then
   echo "Not enough arguments"
-  exit 1
 fi
 
 declare -r namedconf="/etc/named.conf"
@@ -11,7 +10,7 @@ declare -r zoneconfig="/var/named/data/${1}.zone"
 function err()
 {
   echo "[$(date +'%d-%m-%YT%H:%M:%S%z')]: $@" >&2
-  return 0
+  return $?
 }
 
 function write_zone() 
@@ -24,6 +23,7 @@ zone "${NAME}" IN
   file "data/${NAME}.zone";
 };
 _EOF_
+  return $?
 }
 
 function write_zone_data()
@@ -49,6 +49,7 @@ ${start_ttl}
 ns1 IN  A 192.168.0.53
 
 _EOF_
+  return $?
 }
 
 #############################################################################
